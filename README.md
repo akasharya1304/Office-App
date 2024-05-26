@@ -1,4 +1,6 @@
 # Welcome to Remix!
+% to start  - 
+> nvm use v20.11.1 && npm run dev
 
 - [Remix Docs](https://remix.run/docs)
 - [Netlify Functions Overview](https://docs.netlify.com/functions/overview)

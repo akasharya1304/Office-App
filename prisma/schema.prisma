@@ -1,0 +1,133 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  email         String   @unique
+  password      String
+  billGenerate  BillGeneration[]
+  bill          Bill[]   
+  userDetail    UserDetail[]   
+  buyer         Buyer[]   
+  itemGood      ItemGood[]   
+  state         State[]   
+}
+
+model BillGeneration {
+  id                  String    @id @default(auto()) @map("_id") @db.ObjectId
+  invoice_no          String    @unique
+  invoice_date        DateTime  @default(now())
+  delivery_note       String    @default("")
+  payment_mode        String    @default("")
+  supplier_ref        String    @default("")
+  other_ref           String    @default("")
+  buyer               String
+  buyer_order_no      String
+  buyer_order_date    DateTime  @default(now())
+  dispatch_doc_no     String    @default("")
+  delivery_note_date  DateTime  @default(now())
+  dispatched_through  String    @default("")
+  destination         String    @default("")
+  terms_of_delivery   String    @default("")
+  desc_of_goods       DescOfGoods[]
+  output_cgst         Float
+  output_sgst         Float
+  round_off           String
+  created_at          DateTime  @default(now())
+  modified_at         DateTime  @default(now())
+  User                User      @relation(fields: [userId], references: [id])
+  userId              String    @db.ObjectId
+}
+
+type DescOfGoods {
+  item_id String
+  item_name String
+  description String
+  hsn_sac Int
+  quantity String
+  type String
+  rate Float
+  amount Float
+}
+
+model Bill {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  fileName  String
+  fileSize  Float
+  base64    String
+  createdAt DateTime @default(now())
+  User      User     @relation(fields: [userId], references: [id])
+  userId    String   @db.ObjectId
+}
+
+model UserDetail {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  company_name    String
+  address_1       String
+  address_2       String
+  contact_no_1    String
+  contact_no_2    String
+  gstin_uin       String    
+  state           String    
+  phone_no        String    
+  email           String    
+  bank_name       String    
+  bank_account_no String    
+  branch          String    
+  ifsc            String    
+  pan_no          String    
+  created_at      DateTime @default(now())
+  modified_at     DateTime @default(now())
+  User            User     @relation(fields: [userId], references: [id])
+  userId          String   @db.ObjectId
+}
+
+model Buyer {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  buyer_name  String
+  gstin_uin   String
+  address     String
+  state       String    
+  is_active   Boolean
+  created_at  DateTime @default(now())
+  modified_at DateTime @default(now())
+  User        User     @relation(fields: [userId], references: [id])
+  userId      String   @db.ObjectId
+}
+
+model ItemGood {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  item_name   String
+  hsn_sac     Int
+  cgst        Float
+  sgst        Float
+  is_active   Boolean
+  created_at  DateTime @default(now())
+  modified_at DateTime @default(now())
+  User        User     @relation(fields: [userId], references: [id])
+  userId      String   @db.ObjectId
+}
+
+model State {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  state_name  String
+  state_code  String
+  is_active   Boolean
+  created_at  DateTime @default(now())
+  modified_at DateTime @default(now())
+  User        User     @relation(fields: [userId], references: [id])
+  userId      String   @db.ObjectId
+}
+ 
