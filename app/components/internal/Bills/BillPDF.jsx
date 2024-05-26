@@ -13,7 +13,7 @@ import {
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+ pdfMake?.vfs = pdfFonts?.pdfMake?.vfs;
 
 const BillPDF = (billGenData, userDetail) => {
   if (billGenData) {
