@@ -11,7 +11,6 @@ import { BillPDF } from "./BillPDF";
 import { MdPrint } from "react-icons/md";
 
 const DisplayBill = ({ billGenData, userDetail }) => {
-
   return (
     <div className="min-w-[1250px] max-w-[95%] h-full mt-8 pb-2">
       <div className="flex font-bold text-xl justify-between mb-6 items-center w-full text-gray-500 dark:text-gray-400">
@@ -20,7 +19,11 @@ const DisplayBill = ({ billGenData, userDetail }) => {
         <span>
           <button
             className="focus:outline-none"
-            onClick={() => BillPDF(billGenData, userDetail)}
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                BillPDF(billGenData, userDetail);
+              }
+            }}
           >
             <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
           </button>
@@ -678,7 +681,13 @@ const DisplayBill = ({ billGenData, userDetail }) => {
             text="CANCEL"
             variant="text"
           />
-          <button onClick={() => BillPDF(billGenData, userDetail)}>
+          <button
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                BillPDF(billGenData, userDetail);
+              }
+            }}
+          >
             <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
           </button>
         </div>
