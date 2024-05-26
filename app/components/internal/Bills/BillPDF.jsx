@@ -1699,7 +1699,6 @@ const BillPDF = (billGenData, userDetail) => {
       },
     };
     // if (module === 'contract_booking') {
-    const reportName = `DashBoard.pdf`;
     pdfMake.createPdf(dd).open();
   }
 };
