@@ -1,5 +1,4 @@
 import pdfMake from "pdfmake/build/pdfmake";
-// import pdfFonts from "pdfmake/build/vfs_fonts";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 
 pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfMake.vfs;
@@ -15,7 +14,6 @@ import {
   TotalAmountWithTaxInTableEdit,
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
-
 
 const BillPDF = (billGenData, userDetail) => {
   if (billGenData) {
@@ -156,7 +154,7 @@ const BillPDF = (billGenData, userDetail) => {
               : [true, false, false, false],
         });
       }
-     // console.log(rowData);
+      // console.log(rowData);
       tableData.push(rowData);
       tableData2.push(rowData2);
     });
@@ -210,7 +208,7 @@ const BillPDF = (billGenData, userDetail) => {
               : [true, false, false, false],
         });
       }
-     // console.log(rowData);
+      // console.log(rowData);
       tableData.push(rowData);
       tableData2.push(rowData2);
     }
@@ -230,32 +228,34 @@ const BillPDF = (billGenData, userDetail) => {
                   text: `Output CGST @${billGenData?.output_cgst}%\n Output SGST @${billGenData?.output_sgst}%\n`,
                   bold: true,
                 },
-                Number(billGenData?.round_off) !== 0 && 
-                {
-                  text: Number(billGenData?.round_off) < 0 
-                  ?          [
-                            {
-                              text: `Less:                                         `,
-                              alignment: "left",
-                              margin: [5, 0, 50, 0],
-                              fontSize: 9,
-                              italics: true,
-                            },
-                            {
-                              text: "                                       Round Off",
-                              alignment: "right",
-                              margin: [0, 0, 0, 0],
-                              fontSize: 10,
-                              italics: true,
-                              bold: true,
-                            },
-                          ]
-                  : {text: "Round Off",
-                        alignment: "right",
-                        margin: [0, 0, 0, 0],
-                        fontSize: 10,
-                        italics: true,
-                        bold: true,},
+                Number(billGenData?.round_off) !== 0 && {
+                  text:
+                    Number(billGenData?.round_off) < 0
+                      ? [
+                          {
+                            text: `Less:                                         `,
+                            alignment: "left",
+                            margin: [5, 0, 50, 0],
+                            fontSize: 9,
+                            italics: true,
+                          },
+                          {
+                            text: "                                       Round Off",
+                            alignment: "right",
+                            margin: [0, 0, 0, 0],
+                            fontSize: 10,
+                            italics: true,
+                            bold: true,
+                          },
+                        ]
+                      : {
+                          text: "Round Off",
+                          alignment: "right",
+                          margin: [0, 0, 0, 0],
+                          fontSize: 10,
+                          italics: true,
+                          bold: true,
+                        },
                 },
               ]
             : j === 4
@@ -330,17 +330,18 @@ const BillPDF = (billGenData, userDetail) => {
           bold: false,
           fontSize: 10,
           alignment: "right",
-          margin: billGenData.desc_of_goods.length === 1
-          ? [0, 40, 0, 140]
-          : billGenData.desc_of_goods.length === 2
-          ? [0, 0, 0, 100]
-          : billGenData.desc_of_goods.length === 3
-          ? [0, 0, 0, 70]
-          : billGenData.desc_of_goods.length === 4
-          ? [0, 0, 0, 40]
-          : billGenData.desc_of_goods.length === 5
-          ? [0, 0, 0, 10]
-          : [0, 0, 0, 0],
+          margin:
+            billGenData.desc_of_goods.length === 1
+              ? [0, 40, 0, 140]
+              : billGenData.desc_of_goods.length === 2
+              ? [0, 0, 0, 100]
+              : billGenData.desc_of_goods.length === 3
+              ? [0, 0, 0, 70]
+              : billGenData.desc_of_goods.length === 4
+              ? [0, 0, 0, 40]
+              : billGenData.desc_of_goods.length === 5
+              ? [0, 0, 0, 10]
+              : [0, 0, 0, 0],
           border:
             j === header.length - 1
               ? [true, false, true, false]
@@ -355,32 +356,34 @@ const BillPDF = (billGenData, userDetail) => {
                   text: `Output CGST @${billGenData?.output_cgst}%\n Output SGST @${billGenData?.output_sgst}%\n`,
                   bold: true,
                 },
-                Number(billGenData?.round_off) !== 0 && 
-                {
-                  text: Number(billGenData?.round_off) < 0 
-                  ?          [
-                            {
-                              text: `Less:                                         `,
-                              alignment: "left",
-                              margin: [5, 0, 50, 0],
-                              fontSize: 9,
-                              italics: true,
-                            },
-                            {
-                              text: "                                       Round Off",
-                              alignment: "right",
-                              margin: [0, 0, 0, 0],
-                              fontSize: 10,
-                              italics: true,
-                              bold: true,
-                            },
-                          ]
-                  : {text: "Round Off",
-                        alignment: "right",
-                        margin: [0, 0, 0, 0],
-                        fontSize: 10,
-                        italics: true,
-                        bold: true,},
+                Number(billGenData?.round_off) !== 0 && {
+                  text:
+                    Number(billGenData?.round_off) < 0
+                      ? [
+                          {
+                            text: `Less:                                         `,
+                            alignment: "left",
+                            margin: [5, 0, 50, 0],
+                            fontSize: 9,
+                            italics: true,
+                          },
+                          {
+                            text: "                                       Round Off",
+                            alignment: "right",
+                            margin: [0, 0, 0, 0],
+                            fontSize: 10,
+                            italics: true,
+                            bold: true,
+                          },
+                        ]
+                      : {
+                          text: "Round Off",
+                          alignment: "right",
+                          margin: [0, 0, 0, 0],
+                          fontSize: 10,
+                          italics: true,
+                          bold: true,
+                        },
                 },
               ]
             : j === 4
@@ -455,24 +458,25 @@ const BillPDF = (billGenData, userDetail) => {
           bold: false,
           fontSize: 10,
           alignment: "right",
-          margin: billGenData.desc_of_goods.length === 1
-          ? [0, 40, 0, 140]
-          : billGenData.desc_of_goods.length === 2
-          ? [0, 0, 0, 100]
-          : billGenData.desc_of_goods.length === 3
-          ? [0, 0, 0, 70]
-          : billGenData.desc_of_goods.length === 4
-          ? [0, 0, 0, 40]
-          : billGenData.desc_of_goods.length === 5
-          ? [0, 0, 0, 10]
-          : [0, 0, 0, 0],
+          margin:
+            billGenData.desc_of_goods.length === 1
+              ? [0, 40, 0, 140]
+              : billGenData.desc_of_goods.length === 2
+              ? [0, 0, 0, 100]
+              : billGenData.desc_of_goods.length === 3
+              ? [0, 0, 0, 70]
+              : billGenData.desc_of_goods.length === 4
+              ? [0, 0, 0, 40]
+              : billGenData.desc_of_goods.length === 5
+              ? [0, 0, 0, 10]
+              : [0, 0, 0, 0],
           border:
             j === header.length - 1
               ? [true, false, true, false]
               : [true, false, false, false],
         });
       }
-     // console.log(rowData);
+      // console.log(rowData);
       tableData.push(rowData);
       tableData2.push(rowData2);
     }
@@ -570,7 +574,7 @@ const BillPDF = (billGenData, userDetail) => {
               : [true, true, false, true],
         });
       }
-     // console.log(rowData);
+      // console.log(rowData);
       tableTotalSumData.push(rowData);
       tableTotalSumData2.push(rowData2);
     }
@@ -672,1011 +676,1026 @@ const BillPDF = (billGenData, userDetail) => {
             j === 1 ? [false, false, true, true] : [true, false, false, true],
         });
       }
-     // console.log(rowData);
+      // console.log(rowData);
       tableTotalSumInNumberData.push(rowData);
       tableTotalSumInNumberData2.push(rowData2);
     }
 
-    const handlePdfPageData = (type, tableDATA, tableTotalSumDATA, tableTotalSumInNumberDATA) => {
-      let obj= [
-          {
-            text: "\n",
-          },
-          {
-            columns: [
-              {
-                width: "55%",
-                text: "Tax Invoice",
-                style: "header",
-                alignment: "right",
-              },
-              {
-                text: type,
-                alignment: "right",
-                fontSize: 9,
-                italics: true,
-              },
-            ],
-          },
-          {
-            text: "\n",
-          },
-          {
-            columns: [
-              {
-                width: "52%",
-                table: {
-                  widths: ["*"],
-                  body: [
-                    [
-                      {
-                        width: "60%",
-                        text: [
-                          {
-                            text: `${userDetail.company_name}\n`,
-                            bold: true,
-                            fontSize: 10,
-                          },
-                          { text: `${userDetail.address_1}\n`, fontSize: 8 },
-                          { text: `${userDetail.address_2}\n`, fontSize: 8 },
-                          {
-                            text: `Contact No. ${userDetail.contact_no_1}\n`,
-                            fontSize: 9,
-                          },
-                          { text: `${userDetail.contact_no_2}\n`, fontSize: 8 },
-                          {
-                            text: `GSTIN/UIN: ${userDetail.gstin_uin}\n`,
-                            fontSize: 8,
-                          },
-                          {
-                            text: `State Name : ${userDetail.state?.state_name}, Code : ${userDetail.state?.state_code}\n`,
-                            fontSize: 8,
-                          },
-                          {
-                            text: `Contact: ${userDetail.phone_no}, ${userDetail.contact_no_1}\n`,
-                            fontSize: 8,
-                          },
-                          { text: `E-Mail: ${userDetail.email}\n`, fontSize: 8 },
-                        ],
-                        alignment: "left",
-                        lineHeight: 0.9,
-                        fontSize: 10,
-                        border: [true, true, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                width: "*",
-                table: {
-                  widths: ["*", "*"],
-                  margin: [-10, -10, -10, -10],
-                  body: [
-                    [
-                      {
-                        text: "Invoice No.",
-                        bold: false,
-                        fontSize: 9,
-                        border: [false, true, true, false],
-                      },
-                      {
-                        text: "Dated",
-                        fontSize: 9,
-                        border: [false, true, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: billGenData.invoice_no,
-                        bold: true,
-                        fontSize: 10,
-                        border: [false, false, true, false],
-                      },
-                      {
-                        text: DateFormat(billGenData.invoice_date),
-                        bold: true,
-                        fontSize: 10,
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Delivery Note",
-                        bold: false,
-                        lineHeight: 1.5,
-                        fontSize: 9,
-                        border: [false, true, true, false],
-                      },
-                      {
-                        text: "Mode/Terms of Payment",
-                        lineHeight: 1.5,
-                        fontSize: 9,
-                        border: [false, true, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "",
-                        fontSize: 9,
-                        border: [false, false, true, false],
-                      },
-                      {
-                        text: "",
-                        fontSize: 9,
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Supplier's Ref.",
-                        bold: false,
-                        lineHeight: 1.6,
-                        fontSize: 9,
-                        border: [false, true, true, false],
-                      },
-                      {
-                        text: "Other Reference(s)",
-                        fontSize: 9,
-                        lineHeight: 1.6,
-                        border: [false, true, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "",
-                        fontSize: 9,
-                        border: [false, false, true, true],
-                      },
-                      {
-                        text: "",
-                        fontSize: 9,
-                        border: [false, false, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-            ],
-          },
-          {
-            columns: [
-              {
-                width: "52%",
-                table: {
-                  widths: ["*"],
-                  heights: [113, "*"],
-                  body: [
-                    [
-                      {
-                        width: "60%",
-                        text: [
-                          {
-                            text: `Buyer\n`,
-                            fontSize: 8,
-                            lineHeight: 1.3,
-                            bold: false,
-                          },
-                          {
-                            text: `${billGenData.buyer.buyer_name}\n`,
-                            bold: true,
-                            fontSize: 11,
-                          },
-                          {
-                            text: `${billGenData.buyer.address}\n`,
-                            fontSize: 9,
-                            margin: [0, 0, 100, 0],
-                          },
-                          {
-                            text: `GSTIN/UIN : ${billGenData?.buyer?.gstin_uin}\n`,
-                            fontSize: 9,
-                          },
-                          {
-                            text: `State Name : ${billGenData?.buyer?.state?.state_name}, Code : ${billGenData?.buyer?.state?.state_code}\n`,
-                            fontSize: 9,
-                          },
-                        ],
-                        alignment: "left",
-                        lineHeight: 1.1,
-                        fontSize: 10,
-                        border: [true, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        width: "60%",
-                        text: "",
-                        border: [true, false, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                width: "*",
-                table: {
-                  widths: ["*", "*"],
-                  margin: [-10, -10, -10, -10],
-                  heights: ["auto", "auto", "auto", "auto", "auto", "auto", 38],
-                  body: [
-                    [
-                      {
-                        text: "Buyer's Order No.",
-                        bold: false,
-                        fontSize: 9,
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, false],
-                      },
-                      {
-                        text: "Dated",
-                        fontSize: 9,
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: billGenData.buyer_order_no,
-                        bold: true,
-                        fontSize: 10,
-                        border: [false, false, true, false],
-                      },
-                      {
-                        text: DateFormat(billGenData.buyer_order_date),
-                        bold: true,
-                        fontSize: 10,
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Despatch Document No.",
-                        bold: false,
-                        lineHeight: 1.5,
-                        fontSize: 9,
-                        border: [false, true, true, false],
-                      },
-                      {
-                        text: "Delivery Note Date",
-                        lineHeight: 1.5,
-                        fontSize: 9,
-                        border: [false, true, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "",
-                        fontSize: 9,
-                        border: [false, false, true, false],
-                      },
-                      {
-                        text: "",
-                        fontSize: 9,
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Despatch through",
-                        bold: false,
-                        lineHeight: 1.6,
-                        fontSize: 9,
-                        border: [false, true, true, false],
-                      },
-                      {
-                        text: "Destination",
-                        fontSize: 9,
-                        lineHeight: 1.6,
-                        border: [false, true, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "",
-                        fontSize: 9,
-                        border: [false, false, true, true],
-                      },
-                      {
-                        text: "",
-                        fontSize: 9,
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Terms of Delivery",
-                        colSpan: 2,
-                        bold: false,
-                        lineHeight: 1.7,
-                        fontSize: 9,
-                        border: [false, true, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-            ],
-          },
-          console.log(tableData),
-          {
-            table: {
-              headerRows: 1,
-              widths: [14, "*", 45, 55, 33, 20, 60],
-              // heights: ["auto".repeat(billGenData?.desc_of_goods?.length), 100],
-              body: [...tableDATA],
+    const handlePdfPageData = (
+      type,
+      tableDATA,
+      tableTotalSumDATA,
+      tableTotalSumInNumberDATA
+    ) => {
+      let obj = [
+        {
+          text: "\n",
+        },
+        {
+          columns: [
+            {
+              width: "55%",
+              text: "Tax Invoice",
+              style: "header",
+              alignment: "right",
             },
-          },
-          {
-            table: {
-              headerRows: 0,
-              widths: [14, "*", 45, 55, 33, 20, 60],
-              body: [...tableTotalSumDATA],
+            {
+              text: type,
+              alignment: "right",
+              fontSize: 9,
+              italics: true,
             },
-          },
-          {
-            table: {
-              headerRows: 0,
-              widths: ["auto", "*"],
-              body: [...tableTotalSumInNumberDATA],
-            },
-          },
-          {
-            columns: [
-              {
-                width: "44%",
-                table: {
-                  widths: ["*"],
-                  body: [
-                    [
-                      {
-                        text: "HSN/SAC",
-                        fontSize: 11,
-                        lineHeight: 1.1,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, 0, 0, 0],
-                        border: [true, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "",
-                        fontSize: 11,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, 0, 0, 0],
-                        border: [true, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${billGenData.desc_of_goods[0].hsn_sac}`,
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [true, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: `Total`,
-                        fontSize: 10,
-                        bold: true,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [true, false, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                width: "11%",
-                table: {
-                  widths: ["*"],
-                  heights: [6, 8.3, 6, 7.7],
-                  body: [
-                    [
-                      {
-                        text: "Taxable",
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, -3, 0, -3],
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Value",
-                        fontSize: 10,
-                        bold: false,
-                        lineHeight: 1,
-                        alignment: "center",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${currencyWithComma(
-                          Number(
-                            billGenData.desc_of_goods.reduce(
-                              (acc, curr) =>
-                                Number(acc) + Number(curr?.amount || 0),
-                              0
-                            )
-                          ).toFixed(2)
-                        )}`,
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [false, true, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${currencyWithComma(
-                          Number(
-                            billGenData.desc_of_goods.reduce(
-                              (acc, curr) =>
-                                Number(acc) + Number(curr?.amount || 0),
-                              0
-                            )
-                          ).toFixed(2)
-                        )}`,
-                        fontSize: 10,
-                        bold: true,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [false, true, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                width: "6%",
-                table: {
-                  heights: [6, 6, 6, 7.7],
-                  widths: ["*"],
-                  body: [
-                    [
-                      {
-                        text: "Central",
-                        fontSize: 10,
-                        bold: false,
-  
-                        alignment: "right",
-                        margin: [0, -2, -23, -2],
-                        border: [false, false, false, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Rate",
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, -3, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${billGenData.output_cgst}%`,
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: ``,
-                        fontSize: 10,
-                        bold: true,
-                        alignment: "center",
-                        margin: [0, 0, 0, 0],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                width: "10%",
-                table: {
-                  widths: ["*"],
-                  heights: [6, 6, 6, 6],
-                  body: [
-                    [
-                      {
-                        text: "Tax",
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Amount",
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, -3, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${(
-                          Number(
-                            billGenData.desc_of_goods.reduce(
-                              (acc, curr) =>
-                                Number(acc) + Number(curr?.amount || 0),
-                              0
-                            )
-                          ) * Number((billGenData.output_cgst || 0) / 100)
-                        ).toFixed(2)}`,
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${(
-                          Number(
-                            billGenData.desc_of_goods.reduce(
-                              (acc, curr) =>
-                                Number(acc) + Number(curr?.amount || 0),
-                              0
-                            )
-                          ) * Number((billGenData.output_cgst || 0) / 100)
-                        ).toFixed(2)}`,
-                        fontSize: 10,
-                        bold: true,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                width: "6%",
-                table: {
-                  heights: [6, 6, 6, 7.7],
-                  widths: ["*"],
-                  body: [
-                    [
-                      {
-                        text: "State",
-                        fontSize: 10,
-                        bold: false,
-  
-                        alignment: "right",
-                        margin: [0, -2, -23, -2],
-                        border: [false, false, false, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Rate",
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, -3, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${billGenData.output_sgst}%`,
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: ``,
-                        fontSize: 10,
-                        bold: true,
-                        alignment: "center",
-                        margin: [0, 0, 0, 0],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                width: "10%",
-                table: {
-                  widths: ["*"],
-                  heights: [6, 6, 6, 6],
-                  body: [
-                    [
-                      {
-                        text: "Tax",
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Amount",
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, -3, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${(
-                          Number(
-                            billGenData.desc_of_goods.reduce(
-                              (acc, curr) =>
-                                Number(acc) + Number(curr?.amount || 0),
-                              0
-                            )
-                          ) * Number((billGenData.output_sgst || 0) / 100)
-                        ).toFixed(2)}`,
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${(
-                          Number(
-                            billGenData.desc_of_goods.reduce(
-                              (acc, curr) =>
-                                Number(acc) + Number(curr?.amount || 0),
-                              0
-                            )
-                          ) * Number((billGenData.output_sgst || 0) / 100)
-                        ).toFixed(2)}`,
-                        fontSize: 10,
-                        bold: true,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                width: "13%",
-                table: {
-                  heights: [6, 8.3, 6, 7.7],
-                  widths: ["*"],
-                  body: [
-                    [
-                      {
-                        text: "Total",
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, -3, 0, -3],
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "Tax Amount",
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "center",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${totalTaxWithoutRoundOffViewEdit(
-                          billGenData.desc_of_goods,
-                          billGenData.output_cgst,
-                          billGenData.output_sgst
-                        )}`,
-                        fontSize: 10,
-                        bold: false,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                    [
-                      {
-                        text: `${totalTaxWithoutRoundOffViewEdit(
-                          billGenData.desc_of_goods,
-                          billGenData.output_cgst,
-                          billGenData.output_sgst
-                        )}`,
-                        fontSize: 10,
-                        bold: true,
-                        alignment: "right",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, true],
-                      },
-                    ],
-                  ],
-                },
-              },
-            ],
-          },
-          {
-            columns: [
-              {
-                width: "100%",
-                table: {
-                  heights: [40],
-                  widths: ["auto", "*"],
-                  body: [
-                    [
-                      {
-                        text: "Tax Amount (in words) : ",
-                        fontSize: 11,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, 0, 0, 0],
-                        border: [true, false, false, false],
-                      },
-                      {
-                        text: `INR ${numbertoCurrency(
-                          Number(
-                            totalTaxWithoutRoundOffViewEdit(
-                              billGenData.desc_of_goods,
-                              billGenData.output_cgst,
-                              billGenData.output_sgst
-                            ) || 0
-                          )
-                        )}`,
-                        fontSize: 11,
-                        bold: true,
-                        alignment: "left",
-                        margin: [5, 0, 0, 0],
-                        border: [false, false, true, false],
-                      },
-                    ],
-                  ],
-                },
-              },
-            ],
-          },
-          {
-            columns: [
-              {
-                width: "100%",
-                table: {
-                  heights: [8, 8, 8, 8],
-                  widths: ["20%", "25%", "13%", "42%"],
-                  body: [
-                    [
-                      {
-                        text: "",
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [true, false, false, false],
-                      },
-                      {
-                        text: "",
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, false, false],
-                      },
-                      {
-                        text: "Comany's Bank Details",
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, -30, -2],
-                        border: [false, false, false, false],
-                      },
-                      {
-                        text: "",
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "",
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [true, false, false, false],
-                      },
-                      {
-                        text: "",
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, false, false],
-                      },
-                      {
-                        text: `Bank Name `,
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, false, false],
-                      },
-                      {
-                        text: ` : ${userDetail.bank_name} -${userDetail.bank_account_no}`,
-                        fontSize: 9.5,
-                        bold: true,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: "",
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [true, false, false, false],
-                      },
-                      {
-                        text: "",
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, false, false],
-                      },
-                      {
-                        text: `A/c No. `,
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, false, false],
-                      },
-                      {
-                        text: `: ${userDetail.bank_account_no}`,
-                        fontSize: 9.5,
-                        bold: true,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, false],
-                      },
-                    ],
-                    [
-                      {
-                        text: `Company's PAN `,
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [true, false, false, false],
-                      },
-                      {
-                        text: ` : ${userDetail.pan_no}`,
-                        fontSize: 9.5,
-                        bold: true,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, false, false],
-                      },
-                      {
-                        text: `Branch & IFS Code`,
-                        fontSize: 9,
-                        bold: false,
-                        alignment: "left",
-                        margin: [0, -2, -10, -2],
-                        border: [false, false, false, false],
-                      },
-                      {
-                        text: ` : ${userDetail.branch}, ${userDetail.ifsc}`,
-                        fontSize: 9.5,
-                        bold: true,
-                        alignment: "left",
-                        margin: [0, -2, 0, -2],
-                        border: [false, false, true, false],
-                      },
-                    ],
-                  ],
-                },
-              },
-            ],
-          },
-          {
-            columns: [
-              {
-                width: "100%",
-                table: {
-                  widths: ["46%", "54%"],
-                  body: [
-                    [
-                      {
-                        text: [
-                          {
-                            text: "Declaration\n",
-                            decoration: "underline",
-                            fontSize: 9,
-                            bold: false,
-                          },
-                          {
-                            text: "We declare that this invoice shows the actual price of the\n goods described and that all particulars are true and correct.",
-                            fontSize: 8.5,
-                          },
-                        ],
-                        margin: [0, 5, 0, 5],
-                        border: [true, false, false, true],
-                      },
-                      [
+          ],
+        },
+        {
+          text: "\n",
+        },
+        {
+          columns: [
+            {
+              width: "52%",
+              table: {
+                widths: ["*"],
+                body: [
+                  [
+                    {
+                      width: "60%",
+                      text: [
                         {
-                          text: "",
-                          margin: [0, 0, 0, 0],
+                          text: `${userDetail.company_name}\n`,
+                          bold: true,
                           fontSize: 10,
-                          border: [true, true, false, true],
+                        },
+                        { text: `${userDetail.address_1}\n`, fontSize: 8 },
+                        { text: `${userDetail.address_2}\n`, fontSize: 8 },
+                        {
+                          text: `Contact No. ${userDetail.contact_no_1}\n`,
+                          fontSize: 9,
+                        },
+                        { text: `${userDetail.contact_no_2}\n`, fontSize: 8 },
+                        {
+                          text: `GSTIN/UIN: ${userDetail.gstin_uin}\n`,
+                          fontSize: 8,
                         },
                         {
-                          text: "for Arvind Print Pack\n\n\nAuthorised Signatory",
-                          margin: [0, 0, 0, 0],
-                          alignment: "right",
-                          fontSize: 10,
-                          border: [false, true, true, true],
+                          text: `State Name : ${userDetail.state?.state_name}, Code : ${userDetail.state?.state_code}\n`,
+                          fontSize: 8,
+                        },
+                        {
+                          text: `Contact: ${userDetail.phone_no}, ${userDetail.contact_no_1}\n`,
+                          fontSize: 8,
+                        },
+                        { text: `E-Mail: ${userDetail.email}\n`, fontSize: 8 },
+                      ],
+                      alignment: "left",
+                      lineHeight: 0.9,
+                      fontSize: 10,
+                      border: [true, true, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+            {
+              width: "*",
+              table: {
+                widths: ["*", "*"],
+                margin: [-10, -10, -10, -10],
+                body: [
+                  [
+                    {
+                      text: "Invoice No.",
+                      bold: false,
+                      fontSize: 9,
+                      border: [false, true, true, false],
+                    },
+                    {
+                      text: "Dated",
+                      fontSize: 9,
+                      border: [false, true, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: billGenData.invoice_no,
+                      bold: true,
+                      fontSize: 10,
+                      border: [false, false, true, false],
+                    },
+                    {
+                      text: DateFormat(billGenData.invoice_date),
+                      bold: true,
+                      fontSize: 10,
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Delivery Note",
+                      bold: false,
+                      lineHeight: 1.5,
+                      fontSize: 9,
+                      border: [false, true, true, false],
+                    },
+                    {
+                      text: "Mode/Terms of Payment",
+                      lineHeight: 1.5,
+                      fontSize: 9,
+                      border: [false, true, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "",
+                      fontSize: 9,
+                      border: [false, false, true, false],
+                    },
+                    {
+                      text: "",
+                      fontSize: 9,
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Supplier's Ref.",
+                      bold: false,
+                      lineHeight: 1.6,
+                      fontSize: 9,
+                      border: [false, true, true, false],
+                    },
+                    {
+                      text: "Other Reference(s)",
+                      fontSize: 9,
+                      lineHeight: 1.6,
+                      border: [false, true, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "",
+                      fontSize: 9,
+                      border: [false, false, true, true],
+                    },
+                    {
+                      text: "",
+                      fontSize: 9,
+                      border: [false, false, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+          ],
+        },
+        {
+          columns: [
+            {
+              width: "52%",
+              table: {
+                widths: ["*"],
+                heights: [113, "*"],
+                body: [
+                  [
+                    {
+                      width: "60%",
+                      text: [
+                        {
+                          text: `Buyer\n`,
+                          fontSize: 8,
+                          lineHeight: 1.3,
+                          bold: false,
+                        },
+                        {
+                          text: `${billGenData.buyer.buyer_name}\n`,
+                          bold: true,
+                          fontSize: 11,
+                        },
+                        {
+                          text: `${billGenData.buyer.address}\n`,
+                          fontSize: 9,
+                          margin: [0, 0, 100, 0],
+                        },
+                        {
+                          text: `GSTIN/UIN : ${billGenData?.buyer?.gstin_uin}\n`,
+                          fontSize: 9,
+                        },
+                        {
+                          text: `State Name : ${billGenData?.buyer?.state?.state_name}, Code : ${billGenData?.buyer?.state?.state_code}\n`,
+                          fontSize: 9,
                         },
                       ],
+                      alignment: "left",
+                      lineHeight: 1.1,
+                      fontSize: 10,
+                      border: [true, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      width: "60%",
+                      text: "",
+                      border: [true, false, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+            {
+              width: "*",
+              table: {
+                widths: ["*", "*"],
+                margin: [-10, -10, -10, -10],
+                heights: ["auto", "auto", "auto", "auto", "auto", "auto", 38],
+                body: [
+                  [
+                    {
+                      text: "Buyer's Order No.",
+                      bold: false,
+                      fontSize: 9,
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, false],
+                    },
+                    {
+                      text: "Dated",
+                      fontSize: 9,
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: billGenData.buyer_order_no,
+                      bold: true,
+                      fontSize: 10,
+                      border: [false, false, true, false],
+                    },
+                    {
+                      text: DateFormat(billGenData.buyer_order_date),
+                      bold: true,
+                      fontSize: 10,
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Despatch Document No.",
+                      bold: false,
+                      lineHeight: 1.5,
+                      fontSize: 9,
+                      border: [false, true, true, false],
+                    },
+                    {
+                      text: "Delivery Note Date",
+                      lineHeight: 1.5,
+                      fontSize: 9,
+                      border: [false, true, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "",
+                      fontSize: 9,
+                      border: [false, false, true, false],
+                    },
+                    {
+                      text: "",
+                      fontSize: 9,
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Despatch through",
+                      bold: false,
+                      lineHeight: 1.6,
+                      fontSize: 9,
+                      border: [false, true, true, false],
+                    },
+                    {
+                      text: "Destination",
+                      fontSize: 9,
+                      lineHeight: 1.6,
+                      border: [false, true, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "",
+                      fontSize: 9,
+                      border: [false, false, true, true],
+                    },
+                    {
+                      text: "",
+                      fontSize: 9,
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Terms of Delivery",
+                      colSpan: 2,
+                      bold: false,
+                      lineHeight: 1.7,
+                      fontSize: 9,
+                      border: [false, true, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+          ],
+        },
+        console.log(tableData),
+        {
+          table: {
+            headerRows: 1,
+            widths: [14, "*", 45, 55, 33, 20, 60],
+            // heights: ["auto".repeat(billGenData?.desc_of_goods?.length), 100],
+            body: [...tableDATA],
+          },
+        },
+        {
+          table: {
+            headerRows: 0,
+            widths: [14, "*", 45, 55, 33, 20, 60],
+            body: [...tableTotalSumDATA],
+          },
+        },
+        {
+          table: {
+            headerRows: 0,
+            widths: ["auto", "*"],
+            body: [...tableTotalSumInNumberDATA],
+          },
+        },
+        {
+          columns: [
+            {
+              width: "44%",
+              table: {
+                widths: ["*"],
+                body: [
+                  [
+                    {
+                      text: "HSN/SAC",
+                      fontSize: 11,
+                      lineHeight: 1.1,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, 0, 0, 0],
+                      border: [true, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "",
+                      fontSize: 11,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, 0, 0, 0],
+                      border: [true, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${billGenData.desc_of_goods[0].hsn_sac}`,
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [true, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: `Total`,
+                      fontSize: 10,
+                      bold: true,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [true, false, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+            {
+              width: "11%",
+              table: {
+                widths: ["*"],
+                heights: [6, 8.3, 6, 7.7],
+                body: [
+                  [
+                    {
+                      text: "Taxable",
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, -3, 0, -3],
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Value",
+                      fontSize: 10,
+                      bold: false,
+                      lineHeight: 1,
+                      alignment: "center",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${currencyWithComma(
+                        Number(
+                          billGenData.desc_of_goods.reduce(
+                            (acc, curr) =>
+                              Number(acc) + Number(curr?.amount || 0),
+                            0
+                          )
+                        ).toFixed(2)
+                      )}`,
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [false, true, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${currencyWithComma(
+                        Number(
+                          billGenData.desc_of_goods.reduce(
+                            (acc, curr) =>
+                              Number(acc) + Number(curr?.amount || 0),
+                            0
+                          )
+                        ).toFixed(2)
+                      )}`,
+                      fontSize: 10,
+                      bold: true,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [false, true, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+            {
+              width: "6%",
+              table: {
+                heights: [6, 6, 6, 7.7],
+                widths: ["*"],
+                body: [
+                  [
+                    {
+                      text: "Central",
+                      fontSize: 10,
+                      bold: false,
+
+                      alignment: "right",
+                      margin: [0, -2, -23, -2],
+                      border: [false, false, false, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Rate",
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, -3, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${billGenData.output_cgst}%`,
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: ``,
+                      fontSize: 10,
+                      bold: true,
+                      alignment: "center",
+                      margin: [0, 0, 0, 0],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+            {
+              width: "10%",
+              table: {
+                widths: ["*"],
+                heights: [6, 6, 6, 6],
+                body: [
+                  [
+                    {
+                      text: "Tax",
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Amount",
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, -3, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${(
+                        Number(
+                          billGenData.desc_of_goods.reduce(
+                            (acc, curr) =>
+                              Number(acc) + Number(curr?.amount || 0),
+                            0
+                          )
+                        ) * Number((billGenData.output_cgst || 0) / 100)
+                      ).toFixed(2)}`,
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${(
+                        Number(
+                          billGenData.desc_of_goods.reduce(
+                            (acc, curr) =>
+                              Number(acc) + Number(curr?.amount || 0),
+                            0
+                          )
+                        ) * Number((billGenData.output_cgst || 0) / 100)
+                      ).toFixed(2)}`,
+                      fontSize: 10,
+                      bold: true,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+            {
+              width: "6%",
+              table: {
+                heights: [6, 6, 6, 7.7],
+                widths: ["*"],
+                body: [
+                  [
+                    {
+                      text: "State",
+                      fontSize: 10,
+                      bold: false,
+
+                      alignment: "right",
+                      margin: [0, -2, -23, -2],
+                      border: [false, false, false, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Rate",
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, -3, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${billGenData.output_sgst}%`,
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: ``,
+                      fontSize: 10,
+                      bold: true,
+                      alignment: "center",
+                      margin: [0, 0, 0, 0],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+            {
+              width: "10%",
+              table: {
+                widths: ["*"],
+                heights: [6, 6, 6, 6],
+                body: [
+                  [
+                    {
+                      text: "Tax",
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Amount",
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, -3, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${(
+                        Number(
+                          billGenData.desc_of_goods.reduce(
+                            (acc, curr) =>
+                              Number(acc) + Number(curr?.amount || 0),
+                            0
+                          )
+                        ) * Number((billGenData.output_sgst || 0) / 100)
+                      ).toFixed(2)}`,
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${(
+                        Number(
+                          billGenData.desc_of_goods.reduce(
+                            (acc, curr) =>
+                              Number(acc) + Number(curr?.amount || 0),
+                            0
+                          )
+                        ) * Number((billGenData.output_sgst || 0) / 100)
+                      ).toFixed(2)}`,
+                      fontSize: 10,
+                      bold: true,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+            {
+              width: "13%",
+              table: {
+                heights: [6, 8.3, 6, 7.7],
+                widths: ["*"],
+                body: [
+                  [
+                    {
+                      text: "Total",
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, -3, 0, -3],
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "Tax Amount",
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "center",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${totalTaxWithoutRoundOffViewEdit(
+                        billGenData.desc_of_goods,
+                        billGenData.output_cgst,
+                        billGenData.output_sgst
+                      )}`,
+                      fontSize: 10,
+                      bold: false,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                  [
+                    {
+                      text: `${totalTaxWithoutRoundOffViewEdit(
+                        billGenData.desc_of_goods,
+                        billGenData.output_cgst,
+                        billGenData.output_sgst
+                      )}`,
+                      fontSize: 10,
+                      bold: true,
+                      alignment: "right",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, true],
+                    },
+                  ],
+                ],
+              },
+            },
+          ],
+        },
+        {
+          columns: [
+            {
+              width: "100%",
+              table: {
+                heights: [40],
+                widths: ["auto", "*"],
+                body: [
+                  [
+                    {
+                      text: "Tax Amount (in words) : ",
+                      fontSize: 11,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, 0, 0, 0],
+                      border: [true, false, false, false],
+                    },
+                    {
+                      text: `INR ${numbertoCurrency(
+                        Number(
+                          totalTaxWithoutRoundOffViewEdit(
+                            billGenData.desc_of_goods,
+                            billGenData.output_cgst,
+                            billGenData.output_sgst
+                          ) || 0
+                        )
+                      )}`,
+                      fontSize: 11,
+                      bold: true,
+                      alignment: "left",
+                      margin: [5, 0, 0, 0],
+                      border: [false, false, true, false],
+                    },
+                  ],
+                ],
+              },
+            },
+          ],
+        },
+        {
+          columns: [
+            {
+              width: "100%",
+              table: {
+                heights: [8, 8, 8, 8],
+                widths: ["20%", "25%", "13%", "42%"],
+                body: [
+                  [
+                    {
+                      text: "",
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [true, false, false, false],
+                    },
+                    {
+                      text: "",
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, false, false],
+                    },
+                    {
+                      text: "Comany's Bank Details",
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, -30, -2],
+                      border: [false, false, false, false],
+                    },
+                    {
+                      text: "",
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "",
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [true, false, false, false],
+                    },
+                    {
+                      text: "",
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, false, false],
+                    },
+                    {
+                      text: `Bank Name `,
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, false, false],
+                    },
+                    {
+                      text: ` : ${userDetail.bank_name} -${userDetail.bank_account_no}`,
+                      fontSize: 9.5,
+                      bold: true,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: "",
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [true, false, false, false],
+                    },
+                    {
+                      text: "",
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, false, false],
+                    },
+                    {
+                      text: `A/c No. `,
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, false, false],
+                    },
+                    {
+                      text: `: ${userDetail.bank_account_no}`,
+                      fontSize: 9.5,
+                      bold: true,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, false],
+                    },
+                  ],
+                  [
+                    {
+                      text: `Company's PAN `,
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [true, false, false, false],
+                    },
+                    {
+                      text: ` : ${userDetail.pan_no}`,
+                      fontSize: 9.5,
+                      bold: true,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, false, false],
+                    },
+                    {
+                      text: `Branch & IFS Code`,
+                      fontSize: 9,
+                      bold: false,
+                      alignment: "left",
+                      margin: [0, -2, -10, -2],
+                      border: [false, false, false, false],
+                    },
+                    {
+                      text: ` : ${userDetail.branch}, ${userDetail.ifsc}`,
+                      fontSize: 9.5,
+                      bold: true,
+                      alignment: "left",
+                      margin: [0, -2, 0, -2],
+                      border: [false, false, true, false],
+                    },
+                  ],
+                ],
+              },
+            },
+          ],
+        },
+        {
+          columns: [
+            {
+              width: "100%",
+              table: {
+                widths: ["46%", "54%"],
+                body: [
+                  [
+                    {
+                      text: [
+                        {
+                          text: "Declaration\n",
+                          decoration: "underline",
+                          fontSize: 9,
+                          bold: false,
+                        },
+                        {
+                          text: "We declare that this invoice shows the actual price of the\n goods described and that all particulars are true and correct.",
+                          fontSize: 8.5,
+                        },
+                      ],
+                      margin: [0, 5, 0, 5],
+                      border: [true, false, false, true],
+                    },
+                    [
+                      {
+                        text: "",
+                        margin: [0, 0, 0, 0],
+                        fontSize: 10,
+                        border: [true, true, false, true],
+                      },
+                      {
+                        text: "for Arvind Print Pack\n\n\nAuthorised Signatory",
+                        margin: [0, 0, 0, 0],
+                        alignment: "right",
+                        fontSize: 10,
+                        border: [false, true, true, true],
+                      },
                     ],
                   ],
-                },
+                ],
               },
-            ],
-          },
-          {
-            columns: [
-              {
-                width: "100%",
-                text: "This is a Computer Generated Invoice",
-                fontSize: 10,
-                margin: [0, 5, 0, 5],
-                alignment: "center",
-                pageBreak:type === '(ORIGINAL FOR RECIPIENT)' && "after",
-              },
-            ],
-          },
-        ]
-      return obj; 
-    }
+            },
+          ],
+        },
+        {
+          columns: [
+            {
+              width: "100%",
+              text: "This is a Computer Generated Invoice",
+              fontSize: 10,
+              margin: [0, 5, 0, 5],
+              alignment: "center",
+              pageBreak: type === "(ORIGINAL FOR RECIPIENT)" && "after",
+            },
+          ],
+        },
+      ];
+      return obj;
+    };
 
-    let firstPageData = handlePdfPageData('(ORIGINAL FOR RECIPIENT)',tableData, tableTotalSumData, tableTotalSumInNumberData);
-    let secondPageData = handlePdfPageData('(DUPLICATE FOR TRANSPORTER)',tableData2, tableTotalSumData2, tableTotalSumInNumberData2);
+    let firstPageData = handlePdfPageData(
+      "(ORIGINAL FOR RECIPIENT)",
+      tableData,
+      tableTotalSumData,
+      tableTotalSumInNumberData
+    );
+    let secondPageData = handlePdfPageData(
+      "(DUPLICATE FOR TRANSPORTER)",
+      tableData2,
+      tableTotalSumData2,
+      tableTotalSumInNumberData2
+    );
 
     let combinedData = [...firstPageData, ...secondPageData];
     // console.log(combinedData)
