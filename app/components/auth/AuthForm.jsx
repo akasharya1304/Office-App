@@ -10,7 +10,7 @@ import Logo from "~/images/Logo.jpg";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
-import SnackbarComponent from "../utils/SnackbarComponent";
+// import SnackbarComponent from "../utils/SnackbarComponent";
 
 
 function AuthForm(props) {
@@ -120,13 +120,13 @@ function AuthForm(props) {
           </div>
         </Form>
       </div>
-      {validateError && (
+      {/* {validateError && (
         <SnackbarComponent
           snackbarOpen={true}
           snackbarMessage={validateError?.credential}
           snackbarType={"error"}
         />
-      )}
+      )} */}
     </div>
   );
 }
