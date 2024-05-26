@@ -9,17 +9,8 @@ import {
 } from "./HandleCalculation";
 import { BillPDF } from "./BillPDF";
 import { MdPrint } from "react-icons/md";
-import { useEffect, useState } from "react";
 
 const DisplayBill = ({ billGenData, userDetail }) => {
-  const [hydrated, setHydrated] = useState(false);
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-  if (!hydrated) {
-    // Returns null on first render, so the client and server match
-    return null;
-  }
 
   return (
     <div className="min-w-[1250px] max-w-[95%] h-full mt-8 pb-2">

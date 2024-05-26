@@ -17,7 +17,7 @@ import {
 
 const BillPDF = (billGenData, userDetail) => {
   if (billGenData) {
-    console.log(userDetail, billGenData);
+    // console.log(userDetail, billGenData);
     let tableData = [];
     let tableTotalSumData = [];
     let tableTotalSumInNumberData = [];
@@ -1717,8 +1717,10 @@ const BillPDF = (billGenData, userDetail) => {
         },
       },
     };
-    // if (module === 'contract_booking') {
-    pdfMake.createPdf(dd).open();
+    if (typeof window !== "undefined") {
+      pdfMake.createPdf(dd).open();
+    }
+    // pdfMake.createPdf(dd).open();
   }
 };
 
