@@ -15,7 +15,6 @@ import {
   TotalAmountWithTaxInTableEdit,
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
-import { TbPasswordMobilePhone } from "react-icons/tb";
 
 
 const BillPDF = (billGenData, userDetail) => {

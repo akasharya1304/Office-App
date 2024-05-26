@@ -7,7 +7,7 @@ import {
   TotalAmountWithTaxInTableEdit,
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
-import { BillPDF } from "./BillPDF";
+// import { BillPDF } from "./BillPDF";
 import { MdPrint } from "react-icons/md";
 
 const DisplayBill = ({ billGenData, userDetail }) => {
@@ -19,7 +19,7 @@ const DisplayBill = ({ billGenData, userDetail }) => {
         <span className="">
       <button
         className="focus:outline-none" 
-        onClick={() => BillPDF(billGenData, userDetail)}
+        // onClick={() => BillPDF(billGenData, userDetail)}
         >
             <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
           </button>
@@ -677,9 +677,9 @@ const DisplayBill = ({ billGenData, userDetail }) => {
             text="CANCEL"
             variant="text"
           />
-          <button onClick={() => BillPDF(billGenData, userDetail)}>
+          {/* <button onClick={() => BillPDF(billGenData, userDetail)}>
             <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
