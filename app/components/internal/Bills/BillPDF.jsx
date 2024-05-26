@@ -156,7 +156,7 @@ const BillPDF = (billGenData, userDetail) => {
               : [true, false, false, false],
         });
       }
-      console.log(rowData);
+     // console.log(rowData);
       tableData.push(rowData);
       tableData2.push(rowData2);
     });
@@ -210,7 +210,7 @@ const BillPDF = (billGenData, userDetail) => {
               : [true, false, false, false],
         });
       }
-      console.log(rowData);
+     // console.log(rowData);
       tableData.push(rowData);
       tableData2.push(rowData2);
     }
@@ -472,7 +472,7 @@ const BillPDF = (billGenData, userDetail) => {
               : [true, false, false, false],
         });
       }
-      console.log(rowData);
+     // console.log(rowData);
       tableData.push(rowData);
       tableData2.push(rowData2);
     }
@@ -570,7 +570,7 @@ const BillPDF = (billGenData, userDetail) => {
               : [true, true, false, true],
         });
       }
-      console.log(rowData);
+     // console.log(rowData);
       tableTotalSumData.push(rowData);
       tableTotalSumData2.push(rowData2);
     }
@@ -672,7 +672,7 @@ const BillPDF = (billGenData, userDetail) => {
             j === 1 ? [false, false, true, true] : [true, false, false, true],
         });
       }
-      console.log(rowData);
+     // console.log(rowData);
       tableTotalSumInNumberData.push(rowData);
       tableTotalSumInNumberData2.push(rowData2);
     }

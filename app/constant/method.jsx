@@ -104,16 +104,16 @@ const checkInvalidValue = (input) => {
 const currencyWithComma = (input, dot='') => {
   if(input){
     if(dot === ''){
-    const [integerPart, decimalPart] = input.toString().split('.');
+    const [integerPart, decimalPart] = input?.toString()?.split('.');
     console.log(integerPart, decimalPart)
-    const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const formattedIntegerPart = integerPart?.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     return `${formattedIntegerPart}.${decimalPart}`;
     }
     else if(dot === 'no-dot'){
-      const [integerPart] = input.toString().split('.');
+      const [integerPart] = input?.toString()?.split('.');
       console.log(integerPart)
-      const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      const formattedIntegerPart = integerPart?.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
       return `${formattedIntegerPart}`;
     }
