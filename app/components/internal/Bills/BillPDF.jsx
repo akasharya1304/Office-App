@@ -1,6 +1,9 @@
 import pdfMake from "pdfmake/build/pdfmake";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
+
+pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfMake.vfs;
+
 import {
   DateFormat,
   checkInvalidValue,
@@ -12,8 +15,8 @@ import {
   TotalAmountWithTaxInTableEdit,
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
+import { TbPasswordMobilePhone } from "react-icons/tb";
 
- pdfMake?.vfs = pdfFonts?.pdfMake?.vfs;
 
 const BillPDF = (billGenData, userDetail) => {
   if (billGenData) {
