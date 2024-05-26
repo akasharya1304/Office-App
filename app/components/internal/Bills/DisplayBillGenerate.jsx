@@ -20,9 +20,9 @@ const DisplayBill = ({ billGenData, userDetail }) => {
           <button
             className="focus:outline-none"
             onClick={() => {
-              if (typeof window !== "undefined") {
-                BillPDF(billGenData, userDetail);
-              }
+              // if (typeof window !== "undefined") {
+              //   BillPDF(billGenData, userDetail);
+              // }
             }}
           >
             <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
@@ -683,9 +683,9 @@ const DisplayBill = ({ billGenData, userDetail }) => {
           />
           <button
             onClick={() => {
-              if (typeof window !== "undefined") {
-                BillPDF(billGenData, userDetail);
-              }
+              // if (typeof window !== "undefined") {
+              //   BillPDF(billGenData, userDetail);
+              // }
             }}
           >
             <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
