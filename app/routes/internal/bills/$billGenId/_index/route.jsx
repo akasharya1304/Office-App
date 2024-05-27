@@ -23,3 +23,20 @@ export async function loader({request, params}){
     userDetail: userDetail
   })
 }
+
+export async function action({request, params}){
+  const formData = await request.formData()
+  const data = Object.fromEntries(formData);
+  const billGeneratebase64Data = JSON?.parse(data.base64);
+  console.log(billGeneratebase64Data,)
+  const buffer = Buffer.from(billGeneratebase64Data, 'base64');
+
+  // Send the buffer as a PDF
+  return new Response(buffer, {
+    headers: {
+      'Content-Type': 'application/pdf',
+      'Content-Length': buffer.length.toString(),
+    },
+  });
+}
+

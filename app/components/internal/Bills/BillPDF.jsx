@@ -1,5 +1,6 @@
 import pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
+// import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 
 pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfMake.vfs;
 
@@ -14,8 +15,16 @@ import {
   TotalAmountWithTaxInTableEdit,
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
+import { useSubmit } from "@remix-run/react";
+
+import { MdPrint } from "react-icons/md";
+
+const BillGeneratedPDF = (billGenData, userDetail) => {
+
+  const submit = useSubmit();
 
 const BillPDF = (billGenData, userDetail) => {
+  const submit = useSubmit();
   if (billGenData) {
     // console.log(userDetail, billGenData);
     let tableData = [];
@@ -228,35 +237,37 @@ const BillPDF = (billGenData, userDetail) => {
                   text: `Output CGST @${billGenData?.output_cgst}%\n Output SGST @${billGenData?.output_sgst}%\n`,
                   bold: true,
                 },
-                Number(billGenData?.round_off) === 0 ? "" : {
-                  text:
-                    Number(billGenData?.round_off) < 0
-                      ? [
-                          {
-                            text: `Less:                                         `,
-                            alignment: "left",
-                            margin: [5, 0, 50, 0],
-                            fontSize: 9,
-                            italics: true,
-                          },
-                          {
-                            text: "                                       Round Off",
-                            alignment: "right",
-                            margin: [0, 0, 0, 0],
-                            fontSize: 10,
-                            italics: true,
-                            bold: true,
-                          },
-                        ]
-                      : {
-                          text: "Round Off",
-                          alignment: "right",
-                          margin: [0, 0, 0, 0],
-                          fontSize: 10,
-                          italics: true,
-                          bold: true,
-                        },
-                },
+                Number(billGenData?.round_off) === 0
+                  ? ""
+                  : {
+                      text:
+                        Number(billGenData?.round_off) < 0
+                          ? [
+                              {
+                                text: `Less:                                         `,
+                                alignment: "left",
+                                margin: [5, 0, 50, 0],
+                                fontSize: 9,
+                                italics: true,
+                              },
+                              {
+                                text: "                                       Round Off",
+                                alignment: "right",
+                                margin: [0, 0, 0, 0],
+                                fontSize: 10,
+                                italics: true,
+                                bold: true,
+                              },
+                            ]
+                          : {
+                              text: "Round Off",
+                              alignment: "right",
+                              margin: [0, 0, 0, 0],
+                              fontSize: 10,
+                              italics: true,
+                              bold: true,
+                            },
+                    },
               ]
             : j === 4
             ? {
@@ -356,35 +367,37 @@ const BillPDF = (billGenData, userDetail) => {
                   text: `Output CGST @${billGenData?.output_cgst}%\n Output SGST @${billGenData?.output_sgst}%\n`,
                   bold: true,
                 },
-                Number(billGenData?.round_off) === 0 ? "" :{
-                  text:
-                    Number(billGenData?.round_off) < 0
-                      ? [
-                          {
-                            text: `Less:                                         `,
-                            alignment: "left",
-                            margin: [5, 0, 50, 0],
-                            fontSize: 9,
-                            italics: true,
-                          },
-                          {
-                            text: "                                       Round Off",
-                            alignment: "right",
-                            margin: [0, 0, 0, 0],
-                            fontSize: 10,
-                            italics: true,
-                            bold: true,
-                          },
-                        ]
-                      : {
-                          text: "Round Off",
-                          alignment: "right",
-                          margin: [0, 0, 0, 0],
-                          fontSize: 10,
-                          italics: true,
-                          bold: true,
-                        },
-                },
+                Number(billGenData?.round_off) === 0
+                  ? ""
+                  : {
+                      text:
+                        Number(billGenData?.round_off) < 0
+                          ? [
+                              {
+                                text: `Less:                                         `,
+                                alignment: "left",
+                                margin: [5, 0, 50, 0],
+                                fontSize: 9,
+                                italics: true,
+                              },
+                              {
+                                text: "                                       Round Off",
+                                alignment: "right",
+                                margin: [0, 0, 0, 0],
+                                fontSize: 10,
+                                italics: true,
+                                bold: true,
+                              },
+                            ]
+                          : {
+                              text: "Round Off",
+                              alignment: "right",
+                              margin: [0, 0, 0, 0],
+                              fontSize: 10,
+                              italics: true,
+                              bold: true,
+                            },
+                    },
               ]
             : j === 4
             ? {
@@ -1717,11 +1730,30 @@ const BillPDF = (billGenData, userDetail) => {
         },
       },
     };
-    // if (typeof window !== "undefined") {
-      // pdfMake.createPdf(dd).open();
-    // }
-    pdfMake.createPdf(dd).download();
+    
+    pdfMake.createPdf(dd).getBuffer(function(buffer) {
+      // Convert the buffer to a base64 string
+      const base64 = buffer.toString('base64');
+  
+      // Submit the base64 string to the server
+      console.log(typeof window !== 'undefined' && window?.location?.pathname)
+    });
   }
 };
 
-export { BillPDF };
+return (
+  <span>
+  <button
+    className="focus:outline-none"
+    onClick={() => {
+      // BillPDF(billGenData, userDetail);
+    }}
+  >
+    <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
+  </button>
+</span>
+)
+
+}
+
+export { BillGeneratedPDF }

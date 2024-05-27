@@ -7,8 +7,9 @@ import {
   TotalAmountWithTaxInTableEdit,
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
-import { BillPDF } from "./BillPDF";
-import { MdPrint } from "react-icons/md";
+import { BillGeneratedPDF } from "./BillPDF";
+// import { BillPDF } from "./BillPDF";
+// import { MdPrint } from "react-icons/md";
 
 const DisplayBill = ({ billGenData, userDetail }) => {
   return (
@@ -16,18 +17,7 @@ const DisplayBill = ({ billGenData, userDetail }) => {
       <div className="flex font-bold text-xl justify-between mb-6 items-center w-full text-gray-500 dark:text-gray-400">
         <span></span>
         <span>Tax Invoice</span>
-        <span>
-          <button
-            className="focus:outline-none"
-            onClick={() => {
-              if (typeof window !== "undefined") {
-                BillPDF(billGenData, userDetail);
-              }
-            }}
-          >
-            <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
-          </button>
-        </span>
+        <BillGeneratedPDF billGenData={billGenData} userDetail={userDetail} />
       </div>
       <div className="overflow-x-auto">
         <div className="border-2 dark:border-whiteColor">
@@ -681,15 +671,7 @@ const DisplayBill = ({ billGenData, userDetail }) => {
             text="CANCEL"
             variant="text"
           />
-          <button
-            onClick={() => {
-              if (typeof window !== "undefined") {
-                BillPDF(billGenData, userDetail);
-              }
-            }}
-          >
-            <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
-          </button>
+          <BillGeneratedPDF billGenData={billGenData} userDetail={userDetail} />
         </div>
       </div>
     </div>
