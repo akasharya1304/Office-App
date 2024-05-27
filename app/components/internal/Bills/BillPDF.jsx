@@ -15,16 +15,13 @@ import {
   TotalAmountWithTaxInTableEdit,
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
-import { useSubmit } from "@remix-run/react";
 
 import { MdPrint } from "react-icons/md";
-import { w } from "build/client/assets/components-DwBtUcjY";
 
 const BillGeneratedPDF = ({billGenData, userDetail, handleReturnURl}) => {
 
-  const submit = useSubmit();
 
-const BillPDF = (billGenData, userDetail, submit, handleReturnURl) => {
+const BillPDF = (billGenData, userDetail, handleReturnURl) => {
   if (billGenData) {
     console.log(userDetail, billGenData);
     let tableData = [];
@@ -1761,7 +1758,7 @@ return (
   <button
     className="focus:outline-none"
     onClick={() => {
-      BillPDF(billGenData, userDetail, submit, handleReturnURl);
+      BillPDF(billGenData, userDetail, handleReturnURl);
     }}
   >
     <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
