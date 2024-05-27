@@ -8,16 +8,26 @@ import {
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
 import { BillGeneratedPDF } from "./BillPDF";
-// import { BillPDF } from "./BillPDF";
-// import { MdPrint } from "react-icons/md";
+import { useState } from "react";
 
 const DisplayBill = ({ billGenData, userDetail }) => {
+
+  const [pdfUrl, setPdfUrl] = useState("");
+
+  const handleReturnURl = (url) => {
+    setPdfUrl(url);
+  }
+
   return (
     <div className="min-w-[1250px] max-w-[95%] h-full mt-8 pb-2">
       <div className="flex font-bold text-xl justify-between mb-6 items-center w-full text-gray-500 dark:text-gray-400">
         <span></span>
         <span>Tax Invoice</span>
-        <BillGeneratedPDF billGenData={billGenData} userDetail={userDetail} />
+        <BillGeneratedPDF 
+        billGenData={billGenData} 
+        userDetail={userDetail} 
+        handleReturnURl={handleReturnURl}
+        />
       </div>
       <div className="overflow-x-auto">
         <div className="border-2 dark:border-whiteColor">
@@ -671,7 +681,12 @@ const DisplayBill = ({ billGenData, userDetail }) => {
             text="CANCEL"
             variant="text"
           />
-          <BillGeneratedPDF billGenData={billGenData} userDetail={userDetail} />
+          <BillGeneratedPDF 
+          billGenData={billGenData} 
+          userDetail={userDetail} 
+          handleReturnURl={handleReturnURl}
+          />
+          {/* <iframe src={pdfUrl} width="100%" height="100%" /> */}
         </div>
       </div>
     </div>

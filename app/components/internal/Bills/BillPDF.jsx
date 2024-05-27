@@ -1,6 +1,6 @@
 import pdfMake from "pdfmake/build/pdfmake";
-// import * as pdfFonts from "pdfmake/build/vfs_fonts";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+// import pdfFonts from "pdfmake/build/vfs_fonts";
 
 pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfMake.vfs;
 
@@ -18,15 +18,15 @@ import {
 import { useSubmit } from "@remix-run/react";
 
 import { MdPrint } from "react-icons/md";
+import { w } from "build/client/assets/components-DwBtUcjY";
 
-const BillGeneratedPDF = (billGenData, userDetail) => {
+const BillGeneratedPDF = ({billGenData, userDetail, handleReturnURl}) => {
 
   const submit = useSubmit();
 
-const BillPDF = (billGenData, userDetail) => {
-  const submit = useSubmit();
+const BillPDF = (billGenData, userDetail, submit, handleReturnURl) => {
   if (billGenData) {
-    // console.log(userDetail, billGenData);
+    console.log(userDetail, billGenData);
     let tableData = [];
     let tableTotalSumData = [];
     let tableTotalSumInNumberData = [];
@@ -1733,10 +1733,25 @@ const BillPDF = (billGenData, userDetail) => {
     
     pdfMake.createPdf(dd).getBuffer(function(buffer) {
       // Convert the buffer to a base64 string
-      const base64 = buffer.toString('base64');
+      // const base64 = buffer.toString('base64');
+      // let base64Data = JSON.stringify(base64)
+      const pdfBlob = new Blob([new Uint8Array(buffer)], { type: 'application/pdf' });
+
+
+      // Create a URL for the Blob
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+
+      if(typeof window !== 'undefined') {
+        window.open(pdfUrl, '_blank');
+      }
+
+      handleReturnURl(pdfUrl)
   
       // Submit the base64 string to the server
-      console.log(typeof window !== 'undefined' && window?.location?.pathname)
+      // submit(
+      //   { base64Data: base64Data },
+      //   { method: "post" }
+      // );
     });
   }
 };
@@ -1746,7 +1761,7 @@ return (
   <button
     className="focus:outline-none"
     onClick={() => {
-      // BillPDF(billGenData, userDetail);
+      BillPDF(billGenData, userDetail, submit, handleReturnURl);
     }}
   >
     <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
