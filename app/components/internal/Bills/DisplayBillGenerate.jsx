@@ -7,27 +7,57 @@ import {
   TotalAmountWithTaxInTableEdit,
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
-import { BillGeneratedPDF } from "./BillPDF";
-import { useState } from "react";
+import { MdPrint } from "react-icons/md";
+import { useEffect, useState } from "react";
 
-const DisplayBill = ({ billGenData, userDetail }) => {
+const DisplayBill = ({ billGenData, userDetail, pdfBase64 }) => {
+  const [pdfUrl, setPdfUrl] = useState(null);
 
-  const [pdfUrl, setPdfUrl] = useState("");
+  useEffect(() => {
+    console.log(pdfUrl);
+  }, [pdfUrl]);
 
-  const handleReturnURl = (url) => {
-    setPdfUrl(url);
+  function base64PDFToBlobUrl(base64) {
+    const binStr = atob && atob(base64);
+    const len = binStr.length;
+    const arr = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      arr[i] = binStr.charCodeAt(i);
+    }
+    const blob = new Blob([arr], { type: "application/pdf" });
+    return blob;
   }
+
+  const handlePDFPreview = (base64String) => {
+    const extractedText = base64String.slice(base64String.indexOf(",") + 1);
+    const blob = base64PDFToBlobUrl(extractedText);
+    const url = URL.createObjectURL(blob);
+    console.log(blob, url);
+    setPdfUrl(url);
+  };
 
   return (
     <div className="min-w-[1250px] max-w-[95%] h-full mt-8 pb-2">
       <div className="flex font-bold text-xl justify-between mb-6 items-center w-full text-gray-500 dark:text-gray-400">
         <span></span>
         <span>Tax Invoice</span>
-        <BillGeneratedPDF 
-        billGenData={billGenData} 
-        userDetail={userDetail} 
-        handleReturnURl={handleReturnURl}
-        />
+           <span>
+  <button
+    className="focus:outline-none"
+    onClick={() => {
+      handlePDFPreview(pdfBase64)
+    }}
+  >
+  <a
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="min-w-5 min-h-5"
+                  >
+    <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
+    </a>
+</button>
+</span>
       </div>
       <div className="overflow-x-auto">
         <div className="border-2 dark:border-whiteColor">
@@ -681,11 +711,11 @@ const DisplayBill = ({ billGenData, userDetail }) => {
             text="CANCEL"
             variant="text"
           />
-          <BillGeneratedPDF 
+          {/* <BillGeneratedPDF 
           billGenData={billGenData} 
           userDetail={userDetail} 
           handleReturnURl={handleReturnURl}
-          />
+          /> */}
           {/* <iframe src={pdfUrl} width="100%" height="100%" /> */}
         </div>
       </div>

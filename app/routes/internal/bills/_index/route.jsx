@@ -24,6 +24,6 @@ export async function loader({ request }) {
     delete billData[index]["userId"];
     delete billData[index]["buyer"]["userId"];
   }
-  console.log(billData);
+  // console.log(billData);
   return billData;
 }
