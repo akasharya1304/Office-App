@@ -207,7 +207,7 @@ const ManageBills = ({
     formValue.output_sgst = formItemValue[0].item?.sgst
     formValue.round_off  =  RoundOff(formItemValue) !== 0 
     ? Number(RoundOff(formItemValue) || 0).toFixed(2)
-    : 0  
+    : '0'  
     // console.log(formValue)
 
     const billData = JSON.stringify(formValue);

@@ -228,7 +228,7 @@ const BillPDF = (billGenData, userDetail) => {
                   text: `Output CGST @${billGenData?.output_cgst}%\n Output SGST @${billGenData?.output_sgst}%\n`,
                   bold: true,
                 },
-                Number(billGenData?.round_off) !== 0 && {
+                Number(billGenData?.round_off) === 0 ? "" : {
                   text:
                     Number(billGenData?.round_off) < 0
                       ? [
@@ -356,7 +356,7 @@ const BillPDF = (billGenData, userDetail) => {
                   text: `Output CGST @${billGenData?.output_cgst}%\n Output SGST @${billGenData?.output_sgst}%\n`,
                   bold: true,
                 },
-                Number(billGenData?.round_off) !== 0 && {
+                Number(billGenData?.round_off) === 0 ? "" :{
                   text:
                     Number(billGenData?.round_off) < 0
                       ? [
@@ -748,7 +748,7 @@ const BillPDF = (billGenData, userDetail) => {
                         { text: `E-Mail: ${userDetail.email}\n`, fontSize: 8 },
                       ],
                       alignment: "left",
-                      lineHeight: 0.9,
+                      lineHeight: 0.91,
                       fontSize: 10,
                       border: [true, true, true, true],
                     },
@@ -854,7 +854,7 @@ const BillPDF = (billGenData, userDetail) => {
               width: "52%",
               table: {
                 widths: ["*"],
-                heights: [113, "*"],
+                heights: [114, "*"],
                 body: [
                   [
                     {
@@ -1717,10 +1717,10 @@ const BillPDF = (billGenData, userDetail) => {
         },
       },
     };
-    if (typeof window !== "undefined") {
-      pdfMake.createPdf(dd).open();
-    }
-    // pdfMake.createPdf(dd).open();
+    // if (typeof window !== "undefined") {
+      // pdfMake.createPdf(dd).open();
+    // }
+    pdfMake.createPdf(dd).download();
   }
 };
 
