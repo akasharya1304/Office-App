@@ -120,6 +120,14 @@ const currencyWithComma = (input, dot='') => {
   }
 }
 
+function flatAllAsString(...args) {
+  return args
+    .flat()
+    .filter(x => typeof x === 'string')
+    .join(' ')
+    .trim()
+}
+
 export {
   DateFormat,
   checkAlphabet,
@@ -133,5 +141,6 @@ export {
   checkPhoneNo,
   numbertoCurrency,
   checkInvalidValue,
-  currencyWithComma
+  currencyWithComma,
+  flatAllAsString
 };

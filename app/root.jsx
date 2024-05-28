@@ -14,6 +14,7 @@ import ErrorPage from "./components/utils/ErrorPage";
 import stylesheet from "~/tailwind.css?url";
 import { SnackbarComponent } from "./components/utils/SnackbarComponent";
 import { useEffect } from "react";
+import { GlobalLoading } from "./components/comman/GlobalLoading";
 
 const styles = {
   bodyCSS: {
@@ -52,17 +53,6 @@ function Document({ title, children }) {
 }
 
 export default function App() {
-  // useEffect(() => {
-  //   if ('serviceWorker' in navigator) {
-  //     window.addEventListener('load', function() {
-  //       navigator.serviceWorker.register('./entry.worker.js').then(function(registration) {
-  //         console.log('ServiceWorker registration successful with scope: ', registration.scope);
-  //       }, function(err) {
-  //         console.log('ServiceWorker registration failed: ', err);
-  //       });
-  //     });
-  //   }
-  // }, []);
   useSWEffect();
   return (
     <html lang="en">
@@ -75,6 +65,7 @@ export default function App() {
         <Links />
       </head>
       <body style={styles.bodyCSS}>
+      <GlobalLoading />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
