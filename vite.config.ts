@@ -5,6 +5,7 @@ import { netlifyPlugin } from "@netlify/remix-adapter/plugin";
 import { installGlobals } from "@remix-run/node";
 import { flatRoutes } from "remix-flat-routes";
 import path from "path";
+import { remixPWA } from '@remix-pwa/dev'
 
 installGlobals();
 
@@ -16,5 +17,5 @@ export default defineConfig({
     routes: async (defineRoutes) => {
       return flatRoutes("routes", defineRoutes);
     },
-  }), netlifyPlugin(), tsconfigPaths()],
+  }), netlifyPlugin(), tsconfigPaths(), remixPWA(),],
 });

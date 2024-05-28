@@ -7,10 +7,13 @@ import {
   isRouteErrorResponse,
   useRouteError,
 } from "@remix-run/react";
+import { useSWEffect } from '@remix-pwa/sw';
+import { ManifestLink } from '@remix-pwa/sw';
 import ErrorPage from "./components/utils/ErrorPage";
 // import SnackbarComponent from "./components/utils/SnackbarComponent";
 import stylesheet from "~/tailwind.css?url";
 import { SnackbarComponent } from "./components/utils/SnackbarComponent";
+import { useEffect } from "react";
 
 const styles = {
   bodyCSS: {
@@ -36,6 +39,7 @@ function Document({ title, children }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        {/* <ManifestLink /> */}
         <Links />
       </head>
       <body style={styles.bodyCSS}>
@@ -48,12 +52,26 @@ function Document({ title, children }) {
 }
 
 export default function App() {
+  // useEffect(() => {
+  //   if ('serviceWorker' in navigator) {
+  //     window.addEventListener('load', function() {
+  //       navigator.serviceWorker.register('./entry.worker.js').then(function(registration) {
+  //         console.log('ServiceWorker registration successful with scope: ', registration.scope);
+  //       }, function(err) {
+  //         console.log('ServiceWorker registration failed: ', err);
+  //       });
+  //     });
+  //   }
+  // }, []);
+  useSWEffect();
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#c34138" />
         <Meta />
+        <ManifestLink />
         <Links />
       </head>
       <body style={styles.bodyCSS}>
