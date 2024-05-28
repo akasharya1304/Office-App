@@ -1,9 +1,10 @@
+import { pdfMake as pdfFonts } from "~/fonts/vfs_fonts";
 import pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
-// import pdfFonts from "./vfs_fonts";
+// import * as pdfFonts from "pdfmake/build/vfs_fonts";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
 
-pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfMake.vfs;
+// pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfMake.vfs;
+pdfMake.vfs = pdfFonts.vfs
 
 import {
   DateFormat,
