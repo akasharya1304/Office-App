@@ -16,12 +16,6 @@ import {
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
 
-// import { MdPrint } from "react-icons/md";
-// import { useSubmit } from "@remix-run/react";
-
-// const BillGeneratedPDF = ({billGenData, userDetail, handleReturnURl}) => {
-
-// const submit = useSubmit();
 export async function BillPDF(billGenData, userDetail) {
   try {
     if (billGenData) {
@@ -1751,7 +1745,7 @@ export async function BillPDF(billGenData, userDetail) {
         });
       });
     }
-  } catch (error) {
+  }catch (error) {
     throw new Error("failed to get bills", error);
   }
 }

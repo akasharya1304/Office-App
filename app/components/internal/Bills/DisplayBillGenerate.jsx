@@ -9,8 +9,10 @@ import {
 } from "./HandleCalculation";
 import { MdPrint } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { Link } from "@remix-run/react";
+// import { BillPDF } from "./BillPDF";
 
-const DisplayBill = ({ billGenData, userDetail, pdfBase64 }) => {
+const DisplayBill = ({ billGenData, userDetail, pdfBase64 = "" }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => {
@@ -35,29 +37,16 @@ const DisplayBill = ({ billGenData, userDetail, pdfBase64 }) => {
     console.log(blob, url);
     setPdfUrl(url);
   };
-
   return (
     <div className="min-w-[1250px] max-w-[95%] h-full mt-8 pb-2">
       <div className="flex font-bold text-xl justify-between mb-6 items-center w-full text-gray-500 dark:text-gray-400">
         <span></span>
         <span>Tax Invoice</span>
-           <span>
-  <button
-    className="focus:outline-none"
-    onClick={() => {
-      handlePDFPreview(pdfBase64)
-    }}
-  >
-  <a
-                    href={pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="min-w-5 min-h-5"
-                  >
-    <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
-    </a>
-</button>
-</span>
+        <span>
+            <Link to="billViewPdf" reloadDocument target="_blank">
+              <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
+            </Link>
+          </span>
       </div>
       <div className="overflow-x-auto">
         <div className="border-2 dark:border-whiteColor">
@@ -711,12 +700,11 @@ const DisplayBill = ({ billGenData, userDetail, pdfBase64 }) => {
             text="CANCEL"
             variant="text"
           />
-          {/* <BillGeneratedPDF 
-          billGenData={billGenData} 
-          userDetail={userDetail} 
-          handleReturnURl={handleReturnURl}
-          /> */}
-          {/* <iframe src={pdfUrl} width="100%" height="100%" /> */}
+          <span>
+            <Link to="billViewPdf" reloadDocument target="_blank">
+              <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
+            </Link>
+          </span>
         </div>
       </div>
     </div>
