@@ -8,35 +8,10 @@ import {
   totalTaxWithoutRoundOffViewEdit,
 } from "./HandleCalculation";
 import { MdPrint } from "react-icons/md";
-import { useEffect, useState } from "react";
 import { Link } from "@remix-run/react";
-// import { BillPDF } from "./BillPDF";
 
-const DisplayBill = ({ billGenData, userDetail, pdfBase64 = "" }) => {
-  const [pdfUrl, setPdfUrl] = useState(null);
+const DisplayBill = ({ billGenData, userDetail }) => {
 
-  useEffect(() => {
-    console.log(pdfUrl);
-  }, [pdfUrl]);
-
-  function base64PDFToBlobUrl(base64) {
-    const binStr = atob && atob(base64);
-    const len = binStr.length;
-    const arr = new Uint8Array(len);
-    for (let i = 0; i < len; i++) {
-      arr[i] = binStr.charCodeAt(i);
-    }
-    const blob = new Blob([arr], { type: "application/pdf" });
-    return blob;
-  }
-
-  const handlePDFPreview = (base64String) => {
-    const extractedText = base64String.slice(base64String.indexOf(",") + 1);
-    const blob = base64PDFToBlobUrl(extractedText);
-    const url = URL.createObjectURL(blob);
-    console.log(blob, url);
-    setPdfUrl(url);
-  };
   return (
     <div className="min-w-[1250px] max-w-[95%] h-full mt-8 pb-2">
       <div className="flex font-bold text-xl justify-between mb-6 items-center w-full text-gray-500 dark:text-gray-400">

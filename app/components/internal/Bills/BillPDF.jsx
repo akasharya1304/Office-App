@@ -1,9 +1,5 @@
 import { pdfMake as pdfFonts } from "~/fonts/vfs_fonts";
 import pdfMake from "pdfmake/build/pdfmake";
-// import * as pdfFonts from "pdfmake/build/vfs_fonts";
-// import pdfFonts from "pdfmake/build/vfs_fonts";
-
-// pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfMake.vfs;
 pdfMake.vfs = pdfFonts.vfs
 
 import {
@@ -21,7 +17,7 @@ import {
 export async function BillPDF(billGenData, userDetail) {
   try {
     if (billGenData) {
-      // console.log(userDetail, billGenData);
+     
       let tableData = [];
       let tableTotalSumData = [];
       let tableTotalSumInNumberData = [];
@@ -1751,20 +1747,3 @@ export async function BillPDF(billGenData, userDetail) {
     throw new Error("failed to get bills", error);
   }
 }
-
-// return (
-//   <span>
-//   <button
-//     className="focus:outline-none"
-//     onClick={() => {
-//       BillPDF(billGenData, userDetail, submit, handleReturnURl);
-//     }}
-//   >
-//     <MdPrint className="text-3xl text-gray-500 dark:text-gray-400" />
-// </button>
-// </span>
-// )
-
-// }
-
-// export { BillPDF }

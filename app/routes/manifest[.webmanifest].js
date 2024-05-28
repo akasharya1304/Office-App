@@ -4,11 +4,11 @@ export const loader = () => {
   return json(
     {
       short_name: 'PWA',
-      name: 'Remix PWA',
-      start_url: '/',
+      name: 'OFFICE BILLS',
+      start_url: '/internal',
       display: 'standalone',
       background_color: '#d3d7dd',
-      theme_color: '#c34138',
+      theme_color: '#BD7C31',
       icons: [
         {
           src: "/icons/icon-72x72.png",
