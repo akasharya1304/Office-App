@@ -12,7 +12,7 @@ import {
   TextArea,
   TextField,
 } from "~/components/comman/InputField";
-import { checkWord, numbertoCurrency } from "~/constant/method";
+import { PayloadDateFormat, checkWord, numbertoCurrency } from "~/constant/method";
 import { RoundOff, TotalAmountWithTax, totaltaxWithoutRoundOff } from "./HandleCalculation";
 
 const ItemFields = ({
@@ -201,8 +201,8 @@ const ManageBills = ({
     })
     formValue.desc_of_goods = itemGoodsData
     formValue.buyer = buyerID
-    formValue.buyer_order_date = new Date(formValue.buyer_order_date)
-    formValue.invoice_date = new Date(formValue.invoice_date)
+    formValue.buyer_order_date = PayloadDateFormat(formValue.buyer_order_date)
+    formValue.invoice_date = PayloadDateFormat(formValue.invoice_date)
     formValue.output_cgst = formItemValue[0].item?.cgst
     formValue.output_sgst = formItemValue[0].item?.sgst
     formValue.round_off  =  RoundOff(formItemValue) !== 0 

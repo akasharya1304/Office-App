@@ -35,7 +35,7 @@ export async function action({request, params}){
   const formData = await request.formData()
   const data = Object.fromEntries(formData);
   const billGenerateData = JSON?.parse(data.editPayloadBillData);
-  // console.log(billGenerateData, billGenId)
+  console.log(billGenerateData, billGenId)
   await updateBillGenerationById(billGenerateData, billGenId);
   return redirect(INTERNALROUTES.BILLS);
 }

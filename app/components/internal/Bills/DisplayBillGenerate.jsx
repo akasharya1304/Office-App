@@ -71,6 +71,7 @@ const DisplayBill = ({ billGenData, userDetail }) => {
                 </span>
                 <span className="w-36 xs:w-fit mt-1 text-gray-400 dark:text-gray-400 font-bold text-xs sm:text-lg sm:leading-6">
                   {DateFormat(billGenData.invoice_date)}
+                  {console.log(billGenData.invoice_date, DateFormat(billGenData.invoice_date))}
                 </span>
               </div>
               <div className="flex border dark:border-whiteColor px-2">

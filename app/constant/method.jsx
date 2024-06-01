@@ -3,7 +3,13 @@ import { ToWords } from "to-words";
 
 const DateFormat = (input) => {
   if (input) {
-    return moment(input).format("DD MMM YYYY");
+    return moment.utc(input).format("DD MMM YYYY");
+  }
+  return "---"
+};
+const PayloadDateFormat = (input) => {
+  if (input) {
+    return moment.utc(input).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
   }
   return "---"
 };
@@ -130,6 +136,7 @@ function flatAllAsString(...args) {
 
 export {
   DateFormat,
+  PayloadDateFormat,
   checkAlphabet,
   checkNumeric,
   checkWord,

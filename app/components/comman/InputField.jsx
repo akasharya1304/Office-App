@@ -284,7 +284,7 @@ function DatePicker({
 }) {
   const handleChangeValue = (e) => {
     if (handleFormValue)
-      handleFormValue(e.target.name, DateFormat(e.target.value));
+      handleFormValue(e.target.name, e.target.value);
   };
 
   return (

@@ -15,6 +15,7 @@ import {
 } from "~/components/comman/InputField";
 import {
   DateFormat,
+  PayloadDateFormat,
   checkInvalidValue,
   checkWord,
   numbertoCurrency,
@@ -125,7 +126,7 @@ const EditBills = ({ userDetail, buyer, itemsGoods, billDataById }) => {
   }, [billDataById]);
 
   const handleFormValue = (label, data) => {
-    // console.log(label, " : ", data);
+    console.log(label, " : ", data);
     let defaultItem = {
       amount: 0,
       description: "",
@@ -221,8 +222,8 @@ const EditBills = ({ userDetail, buyer, itemsGoods, billDataById }) => {
     let editBillData = JSON.parse(JSON.stringify(billData))
     const buyerId = billData.buyer.id
     editBillData.buyer = buyerId;
-    editBillData.buyer_order_date = new Date(billData.buyer_order_date);
-    editBillData.invoice_date = new Date(billData.invoice_date);
+    editBillData.buyer_order_date = PayloadDateFormat(billData.buyer_order_date);
+    editBillData.invoice_date = PayloadDateFormat(billData.invoice_date);
     editBillData.round_off =
       RoundOffInViewEdit(
         billData?.desc_of_goods,
@@ -250,7 +251,7 @@ const EditBills = ({ userDetail, buyer, itemsGoods, billDataById }) => {
           }
         })
         editBillData.desc_of_goods = itemGoodsData
-    // console.log("EDIT",editBillData, itemGoodsData);
+    console.log("EDIT",editBillData);
 
     const editPayloadBillData = JSON.stringify(editBillData);
     submit({ editPayloadBillData: editPayloadBillData }, { method: "post" });
